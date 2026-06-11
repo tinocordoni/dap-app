@@ -12,12 +12,38 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String appTitle = "CruzAR";
 
-  UserInfo usuario = UserInfo(
-    mail: "tino@gmail.com",
-    password: "Helado",
-    name: "Santino",
-    surname: "Cordoni",
-  );
+  List<UserInfo> usuarios = [
+    UserInfo(
+      mail: "tino@gmail.com",
+      password: "Helado",
+      name: "Santino",
+      surname: "Cordoni",
+    ),
+    UserInfo(
+      mail: "noah@gmail.com",
+      password: "Papada991",
+      name: "Noah",
+      surname: "Goldaracena",
+    ),
+    UserInfo(
+      mail: "ivo@gmail.com",
+      password: "Karting",
+      name: "Iván",
+      surname: "Musto",
+    ),
+    UserInfo(
+      mail: "mate@gmail.com",
+      password: "Messi",
+      name: "Mateo",
+      surname: "De Rosa",
+    ),
+    UserInfo(
+      mail: "jero@gmail.com",
+      password: "Copita",
+      name: "Jerónimo",
+      surname: "Bralo",
+    ),
+  ];
 
   bool obscurePassword = true;
 
@@ -70,12 +96,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     final password = passwordController.text;
                     if (mail.isEmpty || password.isEmpty) {
                       informar = "Llene ambos campos";
-                    } else if (mail == usuario.mail &&
-                        password == usuario.password) {
-                      informar = "Puede ingresar";
-                      context.go("/home", extra: usuario);
+                    } else if (usuarios.any(
+                      (usuario) => usuario.mail == mail,
+                    )) {
+                      UserInfo persona = usuarios.firstWhere(
+                        (usuario) => usuario.mail == mail,
+                      );
+                      if (password == persona.password) {
+                        context.push("/home");
+                        informar = "Puede ingresar";
+                      }
                     } else {
-                      informar = "Las credenciales no son correctas";
+                      informar = "El usuario no existe";
                     }
                     passwordController.clear();
                     ScaffoldMessenger.of(
