@@ -17,6 +17,8 @@ TextEditingController productDescriptionController = TextEditingController();
 TextEditingController productPriceController = TextEditingController();
 TextEditingController productQuantityController = TextEditingController();
 
+List<Product> listaProductos = [];
+
 String mostExpensiveName = "";
 String cheapestName = "";
 String mostQuantityName = "";
@@ -134,8 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             quantity: quantity,
                           );
 
-                          if (numberOfItems == 0) {
-                            numberOfItems = 1;
+                          if (listaProductos.isEmpty) {
                             totalPriceOfItems = product.price;
 
                             mostExpensiveName = product.name;
@@ -149,11 +150,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             leastQuantityNum = product.quantity;
                             avgPrice = product.price;
                           } else {
-                            numberOfItems++;
                             totalPriceOfItems += product.price;
 
                             //promedio
-                            avgPrice = totalPriceOfItems / numberOfItems;
+                            avgPrice =
+                                totalPriceOfItems / listaProductos.length;
 
                             if (product.price > mostExpensiveNum) {
                               //caro
@@ -180,7 +181,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               leastQuantityDesc = product.description;
                             }
                           }
-
+                          listaProductos.add(
+                            Product(
+                              name: productNameController.text,
+                              description: productDescriptionController.text,
+                              price: price,
+                              quantity: quantity,
+                            ),
+                          );
                           productNameController.clear();
                           productDescriptionController.clear();
                           productPriceController.clear();
@@ -195,11 +203,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: 200,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (numberOfItems > 0) {
+                          if (listaProductos.isNotEmpty) {
                             context.push("/show");
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("Ingrese algún ítem")),
+                              SnackBar(content: Text("Ingrese algún producto")),
                             );
                           }
                         },
