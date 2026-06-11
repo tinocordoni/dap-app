@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         (usuario) => usuario.mail == mail,
                       );
                       if (password == persona.password) {
-                        context.push("/home");
+                        context.push("/home", extra: persona);
                         informar = "Puede ingresar";
                       }
                     } else {
