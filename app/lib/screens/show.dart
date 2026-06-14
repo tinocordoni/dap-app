@@ -28,14 +28,14 @@ class _ShowScreenState extends State<ShowScreen> {
                   "Más caro",
                   style: TextStyle(fontSize: 30, color: Colors.blueGrey),
                 ),
-                Text("$mostExpensiveName: $mostExpensiveNum", style: TextStyle(fontSize: 30),),
+                Text("$mostExpensiveName: \$$mostExpensiveNum", style: TextStyle(fontSize: 30),),
                 Text(mostExpensiveDesc),
                 SizedBox(height: 10),
                 Text(
                   "Más barato",
                   style: TextStyle(fontSize: 30, color: Colors.blueGrey),
                 ),
-                Text("$cheapestName: $cheapestName", style: TextStyle(fontSize: 30),),
+                Text("$cheapestName: \$$cheapestNum", style: TextStyle(fontSize: 30),),
                 Text(cheapestDesc),
                 SizedBox(height: 10),
                 Text(
@@ -54,7 +54,7 @@ class _ShowScreenState extends State<ShowScreen> {
                 Text(
                   "Precio promedio",
                   style: TextStyle(fontSize: 30, color: Colors.blueGrey),
-                ),Text("$avgPrice", style: TextStyle(fontSize: 30),),
+                ),Text("\$$avgPrice", style: TextStyle(fontSize: 30),),
               ],
             ),
           ),

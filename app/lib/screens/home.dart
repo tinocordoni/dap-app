@@ -113,6 +113,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           final quantity = int.tryParse(
                             productQuantityController.text,
                           );
+                          final name = productNameController.text;
+                          final desc = productDescriptionController.text;
+                          if (name.isEmpty || desc.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  "Póngale un nombre y una descripción",
+                                ),
+                              ),
+                            );
+                            return;
+                          }
 
                           if (price == null ||
                               quantity == null ||
@@ -136,7 +148,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             quantity: quantity,
                           );
 
-                          if (listaProductos.isEmpty) {
+                          listaProductos.add(
+                            Product(
+                              name: name,
+                              description: desc,
+                              price: price,
+                              quantity: quantity,
+                            ),
+                          );
+
+                          if (listaProductos.length == 1) {
                             totalPriceOfItems = product.price;
 
                             mostExpensiveName = product.name;
@@ -150,7 +171,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             leastQuantityNum = product.quantity;
                             avgPrice = product.price;
                           } else {
-                            totalPriceOfItems += product.price;
+                            totalPriceOfItems = 0;
+                            for (var producto in listaProductos) {
+                              totalPriceOfItems += producto.price;
+                            }
 
                             //promedio
                             avgPrice =
@@ -181,14 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               leastQuantityDesc = product.description;
                             }
                           }
-                          listaProductos.add(
-                            Product(
-                              name: productNameController.text,
-                              description: productDescriptionController.text,
-                              price: price,
-                              quantity: quantity,
-                            ),
-                          );
+
                           productNameController.clear();
                           productDescriptionController.clear();
                           productPriceController.clear();
