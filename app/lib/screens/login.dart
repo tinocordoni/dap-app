@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '/clases/class_user_info.dart';
+import '/core/data/usuarios_datasource.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,39 +12,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   String appTitle = "CruzAR";
-
-  List<UserInfo> usuarios = [
-    UserInfo(
-      mail: "tino@gmail.com",
-      password: "Helado",
-      name: "Santino",
-      surname: "Cordoni",
-    ),
-    UserInfo(
-      mail: "noah@gmail.com",
-      password: "Papada991",
-      name: "Noah",
-      surname: "Goldaracena",
-    ),
-    UserInfo(
-      mail: "ivo@gmail.com",
-      password: "Karting",
-      name: "Iván",
-      surname: "Musto",
-    ),
-    UserInfo(
-      mail: "mate@gmail.com",
-      password: "Messi",
-      name: "Mateo",
-      surname: "De Rosa",
-    ),
-    UserInfo(
-      mail: "jero@gmail.com",
-      password: "Copita",
-      name: "Jerónimo",
-      surname: "Bralo",
-    ),
-  ];
 
   bool obscurePassword = true;
 
