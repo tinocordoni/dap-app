@@ -228,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             );
                           }
                         },
-                        child: Text("Calcular"),
+                        child: Text("Mostrar"),
                       ),
                     ),
                   ],
